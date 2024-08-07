@@ -1,0 +1,101 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "dff00c2c-5d18-4f06-89e2-bafe3fd95d30",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Her nokta çifti arasındaki Öklid mesafeleri:\n",
+      "(1, 6) ve (4, 4) arasındaki mesafe: 3.605551275463989\n",
+      "(1, 6) ve (6, 11) arasındaki mesafe: 7.0710678118654755\n",
+      "(1, 6) ve (2, 8) arasındaki mesafe: 2.23606797749979\n",
+      "(1, 6) ve (3, 10) arasındaki mesafe: 4.47213595499958\n",
+      "(4, 4) ve (6, 11) arasındaki mesafe: 7.280109889280518\n",
+      "(4, 4) ve (2, 8) arasındaki mesafe: 4.47213595499958\n",
+      "(4, 4) ve (3, 10) arasındaki mesafe: 6.082762530298219\n",
+      "(6, 11) ve (2, 8) arasındaki mesafe: 5.0\n",
+      "(6, 11) ve (3, 10) arasındaki mesafe: 3.1622776601683795\n",
+      "(2, 8) ve (3, 10) arasındaki mesafe: 2.23606797749979\n",
+      "Minimum mesafe (1, 6) ve (2, 8) arasındadır: 2.23606797749979\n"
+     ]
+    }
+   ],
+   "source": [
+    "# İki nokta arasındaki Öklid mesafesini hesaplayan fonksiyon\n",
+    "def euclideanDistance(point1, point2):\n",
+    "    return ((point2[0] - point1[0]) ** 2 + (point2[1] - point1[1]) ** 2)**0.5\n",
+    "\n",
+    "# 2D uzaydaki noktaları temsil eden bir liste oluştur\n",
+    "points = [(1, 6), (4, 4), (6, 11), (2, 8), (3, 10)]\n",
+    "\n",
+    "# Öklid mesafelerini saklamak için bir liste oluştur\n",
+    "distances = []\n",
+    "\n",
+    "# Her nokta çifti arasındaki Öklid mesafesini hesapla ve distances listesine ekle\n",
+    "for i in range(len(points)):\n",
+    "    for j in range(i + 1, len(points)):\n",
+    "        distance = euclideanDistance(points[i], points[j])\n",
+    "        distances.append((points[i], points[j], distance))\n",
+    "\n",
+    "# distances listesini ekrana yazdır\n",
+    "print(\"Her nokta çifti arasındaki Öklid mesafeleri:\")\n",
+    "for point1, point2, distance in distances:\n",
+    "    print(f\"{point1} ve {point2} arasındaki mesafe: {distance}\")\n",
+    "\n",
+    "# Minimum mesafeyi  bul\n",
+    "\"\"\"distances listesinin yapısına bakalım. distances listesi her elemanı bir tuple'dır ve bu tuple şu şekilde yapılandırılmıştır:\n",
+    "(point1, point2, distance)\n",
+    "point1: İlk nokta (tuple olarak (x1, y1) formunda)\n",
+    "point2: İkinci nokta (tuple olarak (x2, y2) formunda)\n",
+    "distance: Bu iki nokta arasındaki Öklid mesafesi \n",
+    "Her tuple'da:\n",
+    "\n",
+    "point1 birinci elemandır ve index 0 ile erişilir.\n",
+    "point2 ikinci elemandır ve index 1 ile erişilir.\n",
+    "distance üçüncü elemandır ve index 2 ile erişilir.\"\"\"\n",
+    "\n",
+    "min_distance = distances[0]\n",
+    "for d in distances:\n",
+    "    if d[2] < min_distance[2]:\n",
+    "        min_distance = d\n",
+    "\n",
+    "# Minimum mesafeyi ekrana yazdır\n",
+    "print(f\"Minimum mesafe {min_distance[0]} ve {min_distance[1]} arasındadır: {min_distance[2]}\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d8f3bb8f-2eae-440a-971b-5a9a7cfd149e",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.12.4"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
